@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.school">
+	<class name="com.school.Student" table="student">
+		<id name="STUDENT_ID" type="long" column="STUDENT_ID">
+			<generator class="identity"/>
+		</id>
+		<property name="firstname" type="string" column="firstname"/>
+		<property name="lastname" type="string" column="lastname"/>
+		
+		<set name="classroom" cascade="all">
+			<key column="student_id"/>
+			<one-to-many class="com.school.Classroom"/>
+		</set>
+		
+		<set name="teacher" cascade="all">
+			<key column="student_id"/>
+			<one-to-many class="com.school.Teacher"/>
+		</set>
+				
+		<set name="subject" cascade="all">
+			<key column="student_id"/>
+			<one-to-many class="com.school.Subject"/>
+		</set>
+		
+	</class>
+</hibernate-mapping>
